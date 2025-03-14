@@ -4,13 +4,13 @@ Goal: Design an enterprise‑grade, highly scalable database schema for a multi�
 Project File Structure
 
 fintech_platform/
-├── sql/
-│   ├── create_database.sql
-│   ├── sample_data.sql
-│   └── test_queries.sql
-├── scripts/
-    ├── maintenance.bat (Windows) or maintenance.sh (macOS/Linux)
-    └── backup.bat (Windows) or backup.sh (macOS/Linux)
+  -> sql/
+     ->  create_database.sql
+     -> sample_data.sql
+     ->  test_queries.sql
+  -> scripts/
+      -> maintenance.bat (Windows) or maintenance.sh (macOS/Linux)
+      -> backup.bat (Windows) or backup.sh (macOS/Linux)
 
 Step 1: Database Schema Creation
 Refer create_database.sql
