@@ -125,7 +125,7 @@ open -a TextEdit create_database.sql
 # Paste the create_database.sql content and save
 ```
 
-create_database.sql
+# create_database.sql
 ```sql
 -- Create database
 CREATE DATABASE fintech_platform;
@@ -452,7 +452,7 @@ CREATE INDEX idx_user_account_summary_id ON user_account_summary(user_id);
 
 ```
 
-sample_data.sql
+# sample_data.sql
 ```bash
 open -a TextEdit sample_data.sql
 # Paste the sample_data.sql content and save
@@ -517,7 +517,7 @@ REFRESH MATERIALIZED VIEW daily_transaction_summary;
 REFRESH MATERIALIZED VIEW user_account_summary;
 
 ```
-test.queries.sql
+# test.queries.sql
 ```bash
 open -a TextEdit test_queries.sql
 # Paste the test_queries.sql content and save
@@ -575,7 +575,7 @@ chmod +x maintenance.sh
 open -a TextEdit maintenance.sh
 # Paste the maintenance.sh content and save
 ```
-maintenance.sh
+# maintenance.sh
 ```sh
 #!/bin/bash
 
@@ -600,7 +600,7 @@ chmod +x backup.sh
 open -a TextEdit backup.sh
 # Paste the backup.sh content and save
 ```
-backup.sh
+# backup.sh
 ```sh
 #!/bin/bash
 
