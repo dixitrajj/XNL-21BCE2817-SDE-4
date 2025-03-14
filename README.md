@@ -90,3 +90,7 @@ The ER diagram shows several important relationships:
 - Many-to-many relationship between Accounts and Transactions
 - Logical relationship showing how Market Data influences Products
 - Transactional relationship showing how operations generate Audit Logs
+
+![image](https://github.com/user-attachments/assets/1cc32053-7fbe-4e30-9a8c-c795db178ff3)
+
+
