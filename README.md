@@ -76,7 +76,8 @@ The Enterprise-Grade Fintech Platform database is designed to support a multi-ve
    - Contains notification type, content, and timestamp
    - Linked to users for personalized communication
 
-2. **Market Data**
+2. **Market Data**[Uploading create_database.sql…]()
+
    - Financial instrument pricing information
    - Tracks data source, timestamp, and market status
    - Influences product offerings and pricing decisions
@@ -94,3 +95,99 @@ The ER diagram shows several important relationships:
 ![image](https://github.com/user-attachments/assets/1cc32053-7fbe-4e30-9a8c-c795db178ff3)
 
 
+## Folder Structure and Commands for mac terminal
+
+# First, create the project directory structure:
+
+```bash
+# Create main project directory
+mkdir -p ~/fintech_platform/{sql,scripts,backups,logs}
+cd ~/fintech_platform
+```
+
+## Store the files in the following locations:
+
+# 1. SQL files in the `sql` folder:
+```bash
+# Navigate to SQL directory
+cd ~/fintech_platform/sql
+
+# Create SQL files
+touch create_database.sql
+touch sample_data.sql
+touch test_queries.sql
+
+# Edit the files (you can use any text editor)
+open -a TextEdit create_database.sql
+# Paste the create_database.sql content and save
+
+open -a TextEdit sample_data.sql
+# Paste the sample_data.sql content and save
+
+open -a TextEdit test_queries.sql
+# Paste the test_queries.sql content and save
+```
+
+# 2. Script files in the `scripts` folder:
+```bash
+# Navigate to scripts directory
+cd ~/fintech_platform/scripts
+
+# Create and make executable the maintenance script
+touch maintenance.sh
+chmod +x maintenance.sh
+open -a TextEdit maintenance.sh
+# Paste the maintenance.sh content and save
+
+# Create and make executable the backup script
+touch backup.sh
+chmod +x backup.sh
+open -a TextEdit backup.sh
+# Paste the backup.sh content and save
+```
+
+# 3. Set up the database:
+```bash
+# Start PostgreSQL if not already running
+brew services start postgresql@15
+
+# Create user and database
+psql postgres -c "CREATE USER fintech_admin WITH PASSWORD 'secure_password';"
+psql postgres -c "ALTER ROLE fintech_admin WITH SUPERUSER;"
+psql postgres -c "CREATE DATABASE fintech_platform;"
+
+# Run the schema creation script
+psql -U fintech_admin -d fintech_platform -f ~/fintech_platform/sql/create_database.sql
+
+# Load sample data
+psql -U fintech_admin -d fintech_platform -f ~/fintech_platform/sql/sample_data.sql
+```
+<img width="1470" alt="Screenshot 2025-03-15 at 1 00 54 AM" src="https://github.com/user-attachments/assets/6928277d-4d2b-4537-9555-2d248d17cb06" />
+
+
+# 4. Set up automated tasks:
+```bash
+# Edit crontab to add scheduled tasks
+crontab -e
+
+# Add these lines to the crontab file:
+# Daily vacuum and refresh at 2 AM
+0 2 * * * ~/fintech_platform/scripts/maintenance.sh
+
+# Create new partitions on the 25th of each month
+0 0 25 * * ~/fintech_platform/scripts/maintenance.sh
+
+# Daily backup at 3 AM
+0 3 * * * ~/fintech_platform/scripts/backup.sh
+```
+use :wq to save and exit from crontab
+
+# 5. Test the database:
+```bash
+# Run test queries
+psql -U fintech_admin -d fintech_platform -f ~/fintech_platform/sql/test_queries.sql
+```
+<img width="1360" alt="Screenshot 2025-03-15 at 1 02 48 AM" src="https://github.com/user-attachments/assets/efade403-470d-4964-acbc-837dcadcb5f4" />
+
+
+This organized structure keeps your SQL files, scripts, and backups in separate directories for better management of the fintech platform database implementation.
